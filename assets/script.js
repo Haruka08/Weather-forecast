@@ -14,19 +14,92 @@ function getApi() {
       return response.json();
     })
     .then(function (data) {
-      console.log(data[1])
-      console.log(data[1].lat)
-      console.log(data[1].lon)
-      console.log(data[1].name)
-      $('h3#city').html(data[1].name); 
+      console.log(data[0])
+      console.log(data[0].lat)
+      console.log(data[0].lon)
+      console.log(data[0].name)
+      $('h3#city').html(data[0].name); 
     
-      var history = data[1].name
+      var history = data[0].name
       $("ol").append($("<button type=button class=search-history>" + history + "</button>"))
       $(".search-history").addClass("btn btn-light")
 
       cityarray.push(history)
         localStorage.setItem("history", JSON.stringify(cityarray))
 
+        // when search history is clcked, the following function is triggered
+        $(".search-history").on("click", function (event){
+        console.log("History button has been clicked!")
+     
+        var cityrecall = $(this).text()
+        console.log(cityrecall);
+
+        var requestUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + cityrecall + '&limit=5&appid=9930c8e1ad3e8334e459a1c1a853b1dd';
+      
+        fetch(requestUrl)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          console.log(data[0])
+          console.log(data[0].lat)
+          console.log(data[0].lon)
+          console.log(data[0].name)
+          $('h3#city').html(data[0].name);
+
+        var current = 'https://api.openweathermap.org/data/2.5/weather?lat=' + data[0].lat + '&lon=' + data[0].lon + '&units=metric&appid=9930c8e1ad3e8334e459a1c1a853b1dd';
+        console.log(current);
+      
+        var forecast = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + data[0].lat + '&lon=' + data[0].lon + '&units=metric&appid=9930c8e1ad3e8334e459a1c1a853b1dd';
+        console.log(forecast);
+      
+        fetch(current)
+        .then (function (response){
+          return response.json();
+        })
+        .then (function (data){
+          var currentDay = moment.unix(data.dt).utc().format('DD/MM/YYYY')
+          console.log(data);
+          console.log(data.main.temp);
+          console.log(data.main.humidity);
+          var icon = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png"
+          console.log(data.wind.speed);
+          $('h3#today').html(currentDay);
+          $('img#icon').attr('src', icon);
+          $('p#temp').html('Temperature: ' + data.main.temp);
+          $('p#wind').html('Wind: ' + data.main.humidity);
+          $('p#humid').html('Humidity: ' + data.wind.speed);
+      
+        fetch(forecast)
+            .then (function (response){
+              return response.json();
+            })
+            .then (function (data){
+              console.log(data)
+              for (var i = 0; i < data.list.length; i+=8){
+                var forecastedPresent = moment.unix(data.list[0].dt).utc().format('HH')
+                var forecastedTime = moment.unix(data.list[i].dt).utc().format('HH')
+                var forecastedDay = moment.unix(data.list[i].dt).utc().format('DD/MM/YYYY')
+                var icon = "http://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png"
+      
+                if(forecastedTime === forecastedPresent){
+                  console.log(forecastedDay)
+                  console.log(icon)
+                  console.log(temp)
+                  console.log(humid)
+                  console.log(wind)
+                  $('div#day' + i).html(forecastedDay);
+                  $('img#icon' + i).attr('src', icon);
+                  $('p#temp' + i).html('Temperature: ' + data.list[i].main.temp);
+                  $('p#wind' + i).html('Wind: ' + data.list[i].main.humidity);
+                  $('p#humid' + i).html('Humidity: ' + data.list[i].wind.speed);
+                }
+              }
+            })
+          })
+        })
+      })
+        
       var current = 'https://api.openweathermap.org/data/2.5/weather?lat=' + data[1].lat + '&lon=' + data[1].lon + '&units=metric&appid=9930c8e1ad3e8334e459a1c1a853b1dd';
       console.log(current);
 
@@ -80,64 +153,65 @@ function getApi() {
   })
   }
 
+
 $('#search').on('click', getApi);
 
 
 
-$("button.search-history").on("click", function (event){
-  var cityrecall = $(this).text()
-  console.log(city);
+// $("button.search-history").on("click", function (event){
+//   var cityrecall = $(this).text()
+//   console.log(city);
 
-  var requestUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + cityrecall + '&limit=5&appid=9930c8e1ad3e8334e459a1c1a853b1dd';
+//   var requestUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + cityrecall + '&limit=5&appid=9930c8e1ad3e8334e459a1c1a853b1dd';
 
-  var current = 'https://api.openweathermap.org/data/2.5/weather?lat=' + data[1].lat + '&lon=' + data[1].lon + '&units=metric&appid=9930c8e1ad3e8334e459a1c1a853b1dd';
-  console.log(current);
+//   var current = 'https://api.openweathermap.org/data/2.5/weather?lat=' + data[1].lat + '&lon=' + data[1].lon + '&units=metric&appid=9930c8e1ad3e8334e459a1c1a853b1dd';
+//   console.log(current);
 
-  var forecast = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + data[1].lat + '&lon=' + data[1].lon + '&units=metric&appid=9930c8e1ad3e8334e459a1c1a853b1dd';
-  console.log(forecast);
+//   var forecast = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + data[1].lat + '&lon=' + data[1].lon + '&units=metric&appid=9930c8e1ad3e8334e459a1c1a853b1dd';
+//   console.log(forecast);
 
-  fetch(current) 
-  .then (function (response){
-    return response.json();
-  })
-  .then (function (data){
-    var currentDay = moment.unix(data.dt).utc().format('DD/MM/YYYY')
-    console.log(data);
-    console.log(data.main.temp);
-    console.log(data.main.humidity);
-    var icon = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png"
-    console.log(data.wind.speed);
-    $('h3#today').html(currentDay);
-    $('img#icon').attr('src', icon);
-    $('p#temp').html('Temperature: ' + data.main.temp);
-    $('p#wind').html('Wind: ' + data.main.humidity);
-    $('p#humid').html('Humidity: ' + data.wind.speed);
+//   fetch(current) 
+//   .then (function (response){
+//     return response.json();
+//   })
+//   .then (function (data){
+//     var currentDay = moment.unix(data.dt).utc().format('DD/MM/YYYY')
+//     console.log(data);
+//     console.log(data.main.temp);
+//     console.log(data.main.humidity);
+//     var icon = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png"
+//     console.log(data.wind.speed);
+//     $('h3#today').html(currentDay);
+//     $('img#icon').attr('src', icon);
+//     $('p#temp').html('Temperature: ' + data.main.temp);
+//     $('p#wind').html('Wind: ' + data.main.humidity);
+//     $('p#humid').html('Humidity: ' + data.wind.speed);
 
-  fetch(forecast) 
-      .then (function (response){
-        return response.json();
-      })
-      .then (function (data){
-        console.log(data)
-        for (var i = 0; i < data.list.length; i+=8){
-          var forecastedPresent = moment.unix(data.list[0].dt).utc().format('HH')
-          var forecastedTime = moment.unix(data.list[i].dt).utc().format('HH')
-          var forecastedDay = moment.unix(data.list[i].dt).utc().format('DD/MM/YYYY')
-          var icon = "http://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png"
+//   fetch(forecast) 
+//       .then (function (response){
+//         return response.json();
+//       })
+//       .then (function (data){
+//         console.log(data)
+//         for (var i = 0; i < data.list.length; i+=8){
+//           var forecastedPresent = moment.unix(data.list[0].dt).utc().format('HH')
+//           var forecastedTime = moment.unix(data.list[i].dt).utc().format('HH')
+//           var forecastedDay = moment.unix(data.list[i].dt).utc().format('DD/MM/YYYY')
+//           var icon = "http://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png"
 
-          if(forecastedTime === forecastedPresent){
-            console.log(forecastedDay)
-            console.log(icon)
-            console.log(temp)
-            console.log(humid)
-            console.log(wind)
-            $('div#day' + i).html(forecastedDay);
-            $('img#icon' + i).attr('src', icon);
-            $('p#temp' + i).html('Temperature: ' + data.list[i].main.temp);
-            $('p#wind' + i).html('Wind: ' + data.list[i].main.humidity);
-            $('p#humid' + i).html('Humidity: ' + data.list[i].wind.speed);
-          }
-        }
-      })
-    })
-  })
+//           if(forecastedTime === forecastedPresent){
+//             console.log(forecastedDay)
+//             console.log(icon)
+//             console.log(temp)
+//             console.log(humid)
+//             console.log(wind)
+//             $('div#day' + i).html(forecastedDay);
+//             $('img#icon' + i).attr('src', icon);
+//             $('p#temp' + i).html('Temperature: ' + data.list[i].main.temp);
+//             $('p#wind' + i).html('Wind: ' + data.list[i].main.humidity);
+//             $('p#humid' + i).html('Humidity: ' + data.list[i].wind.speed);
+          // }
+  //       }
+  //     })
+  //   })
+  // })
