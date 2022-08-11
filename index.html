@@ -1,99 +1,102 @@
 <!DOCTYPE html>
 
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>Weather Forecast</title>
-        <!-- bootstrap -->
-        <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        />
-        <!-- fontawsome -->
-        <link
-            rel="stylesheet"
-            href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-            integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-            crossorigin="anonymous"
-        />
-        <!-- google fonts -->
-        <link
-            href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
-            rel="stylesheet"
-        />
-        <!-- css file -->
-        <link rel="stylesheet" href="./assets/style.css" />
-    </head>
+  <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <title>Weather Forecast</title>
+      <!-- bootstrap -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+      <!-- fontawsome -->
+      <link
+          rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+          crossorigin="anonymous"
+      />
+      <!-- google fonts -->
+      <link
+          href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+          rel="stylesheet"
+      />
+      <!-- css file -->
+      <link rel="stylesheet" href="./assets/style.css" />
+  </head>
 
-    <body>
-        <header>Weather Dashboard</header>
-        <div class="container">
-            <section class="row">
-                <div class="col-4">
-                    <h2>Search for a City</h2>
-                    <input id="city" class="form-input" type="text" placeholder="Enter a City">
-                    <button class="btn btn-primary" type="submit" value="Search" id="search">Search</button>
-                    <ol></ol>
-                </div>
-            </section>
-        </div>
+  <body>
+      <header>Weather Dashboard</header>
+          <div id="container">
+            <div id="search-container">
+              <h3>Search for a City</h3>
+              <input id="city" class="form-input" type="text" placeholder="Enter a City">
+              <button class="btn btn-primary" type="submit" value="Search" id="search">Search</button>
+              <ol id="list"></ol>
+            </div>
 
-        <div>
-            <section id="current">
-                <h2 id="city"></h2>
-                <p id="temp"></p>
-                <p id="wind"></p>
-                <p id="humid"></p>
-                <p id="UV"></p>
-            </section>
-        </div>
+            <div id="main">
+              <div id="current" class="border">
+                  <h3 id="today">date</h3>
+                  <h3 id="city">city</h3>
+                  <img id="icon"/>
+                  <p id="temp">temp</p>
+                  <p id="wind">wind</p>
+                  <p id="humid">humid</p>
+                  <p id="UV">uv</p>
+              </div>
 
-        <div>
-            <section>
+              <div id="forecast-container" class="border">
                 <div class="card border-primary mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Header</div>
-                    <div class="card-body text-primary">
-                      <h5 class="card-title">Primary card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
+                  <div class="card-header" id="day0"></div>
+                  <div class="card-body text-primary">
+                    <img class="card-text" id="icon0"/>
+                    <p class="card-text" id="temp0"></p>
+                    <p class="card-text" id="wind0"></p>
+                    <p class="card-text" id="humid0"></p>
                   </div>
-                  <div class="card border-secondary mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Header</div>
-                    <div class="card-body text-secondary">
-                      <h5 class="card-title">Secondary card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
+                </div>
+
+                <div class="card border-primary mb-3" style="max-width: 18rem;">
+                  <div class="card-header" id="day8"></div>
+                  <div class="card-body text-primary">
+                    <img class="card-text" id="icon8"/>
+                    <p class="card-text" id="temp8"></p>
+                    <p class="card-text" id="wind8"></p>
+                    <p class="card-text" id="humid8"></p>
                   </div>
-                  <div class="card border-success mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Header</div>
-                    <div class="card-body text-success">
-                      <h5 class="card-title">Success card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
+                </div>
+
+                <div class="card border-primary mb-3" style="max-width: 18rem;">
+                  <div class="card-header" id="day16"></div>
+                  <div class="card-body text-primary">
+                    <img class="card-text" id="icon16"/>
+                    <p class="card-text" id="temp16"></p>
+                    <p class="card-text" id="wind16"></p>
+                    <p class="card-text" id="humid16"></p>
                   </div>
-                  <div class="card border-danger mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Header</div>
-                    <div class="card-body text-danger">
-                      <h5 class="card-title">Danger card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
+                </div>
+
+                <div class="card border-primary mb-3" style="max-width: 18rem;">
+                  <div class="card-header" id="day24"></div>
+                  <div class="card-body text-primary">
+                    <img class="card-text" id="icon24"/>
+                    <p class="card-text" id="temp24"></p>
+                    <p class="card-text" id="wind24"></p>
+                    <p class="card-text" id="humid24"></p>
                   </div>
-                  <div class="card border-warning mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Header</div>
-                    <div class="card-body text-warning">
-                      <h5 class="card-title">Warning card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                  </div>
-            </section>
+                </div>
+              </div>
+          </div>
         </div>
+
 
         <!-- jquery js -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <!-- moment js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <!-- js -->
         <script src="./assets/script.js"></script>
   
-    </body>
+  </body>
 
 </html>

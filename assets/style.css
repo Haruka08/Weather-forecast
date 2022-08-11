@@ -4,3 +4,53 @@ header {
     font-size: 30px;
     background-image: linear-gradient(to right, rgb(100, 157, 226), rgb(43, 0, 128));
 }
+
+#forecast-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+#current {
+    padding: 20px;
+    margin: 20px;
+}
+
+.card-text { 
+    color: white;
+}
+
+.card {
+    margin: 20px; 
+    color: white;
+    border:rgb(37, 59, 72);
+    background-color: rgb(37, 59, 72);
+}
+
+#forecast-container {
+    padding: 20px;
+    margin: 20px;
+}
+
+
+#container {
+    display: flex;
+    flex-direction: row;
+    margin-right: 50px;
+}
+
+#search-container {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: 10px;
+}
+
+#search-container button {
+    width: 100px;
+    margin: 10px;
+}
+
+#main {
+    width: 70%;
+}
