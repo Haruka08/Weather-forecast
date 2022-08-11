@@ -20,6 +20,10 @@ header {
     color: white;
 }
 
+/* button .history {
+    width: 250px;
+} */
+
 .card {
     margin: 20px; 
     color: white;
@@ -44,6 +48,10 @@ header {
     flex-direction: column;
     width: 30%;
     margin: 10px;
+}
+
+input {
+    width: 250px;
 }
 
 #search-container button {
