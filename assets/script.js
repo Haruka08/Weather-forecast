@@ -3,7 +3,13 @@ var city = document.getElementById('city')
 // empty array to contain serach history
 var cityarray = []
 
+function init() {
+  $("#main").hide()
+}
+
 function getApi() {
+
+  $("#main").show()
 
   var requestUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city.value + '&limit=5&appid=9930c8e1ad3e8334e459a1c1a853b1dd';
   
@@ -74,9 +80,9 @@ function getApi() {
           console.log(data.wind.speed);
           $('h3#today').html(currentDay);
           $('img#icon').attr('src', icon);
-          $('p#temp').html('Temperature: ' + data.main.temp);
-          $('p#wind').html('Wind: ' + data.main.humidity);
-          $('p#humid').html('Humidity: ' + data.wind.speed);
+          $('p#temp').html('Temperature: ' + data.main.temp + " °C");
+          $('p#wind').html('Humidity: ' + data.main.humidity + " %");
+          $('p#humid').html('Wind: ' + data.wind.speed + " MPH");
       
         // fetch request to obtain 5 day forecast of the same city
         fetch(forecast)
@@ -93,9 +99,9 @@ function getApi() {
                 // enters data to specified element/id
                   $('div#day' + i).html(forecastedDay);
                   $('img#icon' + i).attr('src', icon);
-                  $('p#temp' + i).html('Temperature: ' + data.list[i].main.temp);
-                  $('p#wind' + i).html('Wind: ' + data.list[i].main.humidity);
-                  $('p#humid' + i).html('Humidity: ' + data.list[i].wind.speed);
+                  $('p#temp' + i).html('Temperature: ' + data.list[i].main.temp + " °C");
+                  $('p#wind' + i).html('Humidity: ' + data.list[i].main.humidity + " %");
+                  $('p#humid' + i).html('Wind: ' + data.list[i].wind.speed + " MPH");
               }
             })
           })
@@ -123,9 +129,9 @@ function getApi() {
         console.log(data.wind.speed);
         $('h3#today').html(currentDay);
         $('img#icon').attr('src', icon);
-        $('p#temp').html('Temperature: ' + data.main.temp);
-        $('p#wind').html('Wind: ' + data.main.humidity);
-        $('p#humid').html('Humidity: ' + data.wind.speed);
+        $('p#temp').html('Temperature: ' + data.main.temp + " °C");
+        $('p#wind').html('Humidity: ' + data.main.humidity + " %");
+        $('p#humid').html('Wind: ' + data.wind.speed + " MPH");
 
       // fetch request to obtain 5 day forecast of the same city
       return fetch(forecast) 
@@ -141,9 +147,9 @@ function getApi() {
 
             $('div#day' + i).html(forecastedDay);
             $('img#icon' + i).attr('src', icon);
-            $('p#temp' + i).html('Temperature: ' + data.list[i].main.temp);
-            $('p#wind' + i).html('Wind: ' + data.list[i].main.humidity);
-            $('p#humid' + i).html('Humidity: ' + data.list[i].wind.speed);
+            $('p#temp' + i).html('Temperature: ' + data.list[i].main.temp + " °C");
+            $('p#wind' + i).html('Humidity: ' + data.list[i].main.humidity + " %");
+            $('p#humid' + i).html('Wind: ' + data.list[i].wind.speed + " MPH");
           }
         })
       }
@@ -151,3 +157,6 @@ function getApi() {
     )}
 // trigers the getApi function
 $('#search').on('click', getApi);
+
+
+init()

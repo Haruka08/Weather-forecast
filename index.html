@@ -28,7 +28,7 @@
       <header>Weather Dashboard</header>
           <div id="container">
             <div id="search-container">
-              <h3>Search for a City</h3>
+              <h3 class="title">Search for a City</h3>
               <input id="city" class="form-input" type="text" placeholder="Enter a City">
               <button class="btn btn-primary" type="submit" value="Search" id="search">Search</button>
               <ol id="list"></ol>
@@ -37,7 +37,7 @@
             <div id="main">
               <div id="current" class="border">
                 <div id="current-main">
-                  <h3 id="today" class="current-main"></h3>
+                  <h3 id="today" class="current-main title"></h3>
                   <h3 id="city" class="current-main"></h3>
                   <img id="icon" class="current-main"/>
                 </div>
@@ -47,7 +47,8 @@
                   <p id="UV" class="current-main"></p>
               </div>
 
-              <div id="forecast-container" class="border">
+              <h3 class="title" id="forecast">5-Day Forecast</h3>
+              <div id="forecast-container">
                 <div class="card border-primary mb-3" style="max-width: 18rem;">
                   <div class="card-header" id="day0"></div>
                   <div class="card-body text-primary">

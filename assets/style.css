@@ -12,7 +12,6 @@ header {
 }
 
 #current {
-    padding: 20px;
     margin: 20px;
 }
 
@@ -31,14 +30,13 @@ header {
 }
 
 .card {
-    margin: 20px; 
+    margin: 5px; 
     color: white;
     border:rgb(37, 59, 72);
     background-color: rgb(37, 59, 72);
 }
 
 #forecast-container {
-    padding: 20px;
     margin: 20px;
 }
 
@@ -61,9 +59,10 @@ input {
 }
 
 #search-container button {
-    width: 100px;
-    margin: 10px;
+    width: 100%;
+    margin: 10px 0px;
 }
+
 
 #main {
     width: 80%;
@@ -71,4 +70,12 @@ input {
 
 #list {
     padding: 0;
+}
+
+.title {
+    font-weight: bold;
+}
+
+#forecast {
+    margin: 0px 20px;
 }
