@@ -36,13 +36,15 @@
 
             <div id="main">
               <div id="current" class="border">
-                  <h3 id="today">date</h3>
-                  <h3 id="city">city</h3>
-                  <img id="icon"/>
-                  <p id="temp">temp</p>
-                  <p id="wind">wind</p>
-                  <p id="humid">humid</p>
-                  <p id="UV">uv</p>
+                <div id="current-main">
+                  <h3 id="today" class="current-main"></h3>
+                  <h3 id="city" class="current-main"></h3>
+                  <img id="icon" class="current-main"/>
+                </div>
+                  <p id="temp" class="current-main"></p>
+                  <p id="wind" class="current-main"></p>
+                  <p id="humid" class="current-main"></p>
+                  <p id="UV" class="current-main"></p>
               </div>
 
               <div id="forecast-container" class="border">
@@ -98,7 +100,6 @@
               </div>
           </div>
         </div>
-
 
         <!-- jquery js -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

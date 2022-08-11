@@ -16,13 +16,19 @@ header {
     margin: 20px;
 }
 
+#current-main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.current-main {
+    margin: 10px;
+}
+
 .card-text { 
     color: white;
 }
-
-/* button .history {
-    width: 250px;
-} */
 
 .card {
     margin: 20px; 
@@ -46,7 +52,7 @@ header {
 #search-container {
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 20%;
     margin: 10px;
 }
 
@@ -60,5 +66,9 @@ input {
 }
 
 #main {
-    width: 70%;
+    width: 80%;
+}
+
+#list {
+    padding: 0;
 }
